@@ -15,6 +15,10 @@ Na pasta local do projeto `TioPatinhas`, abra um terminal. Requer Node.js 24 e p
 
 Para validar a produção: `pnpm test`, `pnpm build`, `pnpm test:output` e `pnpm preview`. Abra a URL exibida pelo preview. Não abra o HTML com duplo clique: o site precisa de um servidor HTTP.
 
+## Cinco serviços prioritários
+
+Artes e kits de divulgação; fotos comerciais de produtos; sites, cardápios e catálogos; presença digital no Google e nas buscas com IA; vídeos curtos comerciais (em preparação). Projetos sob orçamento, com escopo, prazo e revisões combinados antes da contratação.
+
 ## Conteúdo entregue
 
 - Página inicial com cinco cards compactos, seção de processo, benefícios e perguntas frequentes.

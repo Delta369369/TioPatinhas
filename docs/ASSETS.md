@@ -19,3 +19,10 @@ Use case: photorealistic-natural. Asset: professional headshot demonstration for
 ## Outros recursos
 
 `produto-base.svg`: ilustração determinística em código, usada na simulação do comparador. Não é fotografia original do produto gerado. `compartilhamento.png`: composição de compartilhamento baseada no produto gerado. Currículo, storyboard e ondas de áudio são gráficos HTML/CSS. Ícones: Lucide, licença ISC da dependência. Nenhum vídeo demonstrativo real foi fornecido.
+
+## Lançamento — cinco serviços
+Gerador integrado image_gen (não CLI). Originais preservados no diretório de geração; cópias locais em public/assets.
+- pizza-comercial.jpg: fotografia comercial fictícia de pizza margherita, ardósia escura, luz quente e recorte violeta/azul; paisagem 3:2; sem texto ou marca.
+- campanha-barbearia.jpg: anúncio fictício de barbearia, preto/violeta/azul, homem adulto com corte degradê; texto: CORTE NA RÉGUA. PRESENÇA DE RESPEITO. / SUA BARBEARIA MERECE ESSE DESTAQUE. / MARCA FICTÍCIA • DEMONSTRAÇÃO COM IA.
+- site-cardapio.svg, presenca-digital.svg e video-conceito.svg: ilustrações de interface e composição em código; não representam sistemas de clientes ou métricas obtidas.
+Peças sociais montadas com tipografia determinística e imagens geradas. Fontes editáveis de layout: scripts/social-kit.ps1. Os PNG finais estão no kit local artifacts/instagram, não publicados automaticamente.

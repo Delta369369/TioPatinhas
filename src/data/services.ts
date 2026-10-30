@@ -1,12 +1,202 @@
 export type Package = {name: string; price: number; quantity: string; delivery: string; revisions: number; active: boolean};
-export type Service = {slug: string; name: string; short: string; description: string; category: string; image?: string; alt: string; kind: 'product'|'portrait'|'video'|'resume'|'audio'; uses: string[]; materials: string; note: string; packages: Package[]; faq: [string,string][]};
+export type Service = {slug: string; name: string; short: string; description: string; category: string; image?: string; alt: string; kind: 'product'|'portrait'|'video'|'resume'|'audio'|'campaign'|'web'|'search'; uses: string[]; materials: string; note: string; packages: Package[]; faq: [string,string][]};
 const pack = (price: number, quantity: string, delivery = 'Até 3 dias úteis', revisions = 1): Package => ({name:'Básico',price,quantity,delivery,revisions,active:true});
 export const services: Service[] = [
- {slug:'fotos-comerciais',name:'Fotos comerciais com IA',short:'Seu produto em uma nova perspectiva.',description:'Transforme fotos simples em imagens comerciais para sua loja virtual, catálogo e redes sociais. Cenários, luz e composição pensados para apresentar seu produto.',category:'PARA MARCAS',kind:'product',image:'produto.webp',alt:'Imagem gerada por IA de um cosmético fictício em cenário de estúdio',uses:['Produtos com fundo profissional','Cosméticos e beleza','Alimentos e gastronomia','Roupas e acessórios','Imagens para anúncios'],materials:'Envie fotos nítidas do produto em diferentes ângulos, seu logotipo e referências de estilo.',note:'Características, logotipos e informações essenciais do produto devem ser preservados. A viabilidade será avaliada antes da contratação.',packages:[pack(19.9,'1 imagem'),{...pack(79.9,'5 imagens','Até 5 dias úteis'),name:'Padrão'},{...pack(139.9,'10 imagens','Até 7 dias úteis',2),name:'Premium'}],faq:[['Meu produto vai ser alterado?','O objetivo é preservar suas características. Detalhes e textos devem ser conferidos na aprovação; ajustes generativos podem apresentar limitações.'],['Quais produtos posso enviar?','Cosméticos, alimentos, roupas e acessórios. Envie uma foto para avaliarmos a viabilidade do seu projeto.']]},
- {slug:'fotos-profissionais',name:'Fotos profissionais com IA',short:'Uma imagem à altura do seu próximo passo.',description:'Iluminação, enquadramento, fundo e acabamento para valorizar sua presença profissional a partir de uma fotografia sua.',category:'PARA SUA CARREIRA',kind:'portrait',image:'isa-perfil.webp',alt:'Isa Guardiã, personagem virtual criada com IA, em retrato profissional',uses:['LinkedIn','Currículos','Perfis profissionais','Redes sociais','Apresentações pessoais'],materials:'Envie uma fotografia original nítida, recente e com o rosto visível. Use apenas imagens suas ou com autorização.',note:'Ferramentas generativas podem alterar detalhes faciais. Não prometemos preservação perfeita de identidade; você confere o resultado antes da aprovação.',packages:[pack(19.9,'1 foto'),{...pack(49.9,'3 fotos'),name:'Padrão'},{...pack(89.9,'6 fotos','Até 5 dias úteis',2),name:'Premium'}],faq:[['Preciso fazer um ensaio?','Não. Uma foto original bem iluminada é o ponto de partida. A qualidade e os ângulos disponíveis influenciam o resultado.'],['O rosto fica exatamente igual?','Não há garantia de identidade facial perfeita com geração por IA. O resultado deve ser avaliado por você.']]},
- {slug:'videos-curtos',name:'Vídeos curtos',short:'Sua mensagem ganha movimento.',description:'Vídeos para Reels, TikTok e Facebook com fotografias, textos, legendas e animações para apresentar sua marca.',category:'PARA REDES SOCIAIS',kind:'video',alt:'Storyboard demonstrativo de um vídeo vertical',uses:['Divulgação de produtos','Promoções','Apresentações de empresas','Vídeos com fotografias','Legendas e animações'],materials:'Envie fotos ou vídeos autorizados, texto, logotipo, plataforma de destino e referências. Informe se precisa de música ou locução.',note:'Os exemplos desta página são storyboards ilustrativos. Vídeos reais serão adicionados ao portfólio após produção e autorização.',packages:[pack(39.9,'1 vídeo de até 15 segundos'),{...pack(79.9,'1 vídeo de até 30 segundos','Até 5 dias úteis'),name:'Padrão'},{...pack(139.9,'1 vídeo de até 60 segundos','Até 7 dias úteis',2),name:'Premium'}],faq:[['Posso enviar só fotos?','Sim. Podemos organizar fotos, textos e animações em um vídeo, conforme o escopo aprovado.'],['O preço inclui locução?','Locução e licenças especiais não estão incluídas automaticamente. Solicite um orçamento com esses detalhes.']]},
- {slug:'curriculos',name:'Currículos profissionais',short:'Sua trajetória, bem apresentada.',description:'Organização, revisão e design para comunicar suas experiências com clareza. Um currículo que apresenta o que você já construiu.',category:'PARA SUA CARREIRA',kind:'resume',alt:'Modelo de currículo com dados fictícios',uses:['Organização das experiências','Revisão ortográfica','Modelos profissionais','Entrega em PDF','Arquivo editável conforme pacote'],materials:'Envie experiências, formação, cursos e contato que deseja incluir. Informe seu objetivo profissional e a vaga de interesse.',note:'Não inventamos experiências, formação ou qualificações. O modelo demonstrativo contém dados fictícios e não representa um cliente.',packages:[pack(29.9,'1 currículo em PDF, até 2 páginas'),{...pack(49.9,'PDF + arquivo editável'),name:'Padrão'},{...pack(79.9,'PDF, editável e carta de apresentação','Até 5 dias úteis',2),name:'Premium'}],faq:[['Vocês criam experiências para mim?','Não. Trabalhamos somente com informações verdadeiras fornecidas por você.'],['Isso garante uma contratação?','Não. O serviço melhora a organização e a apresentação das informações; decisões de contratação dependem de cada processo seletivo.']]},
- {slug:'transcricao',name:'Transcrição de áudio e vídeo',short:'Da conversa para o documento.',description:'Transforme entrevistas, aulas e reuniões em texto organizado, com opções de resumo e tópicos para facilitar a consulta.',category:'PARA SEU DIA A DIA',kind:'audio',alt:'Representação de ondas sonoras e texto transcrito',uses:['Entrevistas e reuniões','Aulas e palestras','Vídeos e gravações','Resumo opcional','Organização em tópicos opcional'],materials:'Informe duração, idioma e número de participantes. Envie uma amostra para avaliar ruídos e clareza. Compartilhe apenas conteúdo que você pode autorizar.',note:'O valor final depende da duração, qualidade da gravação e complexidade. Trechos inaudíveis serão identificados, sem inventar falas.',packages:[pack(19.9,'Até 10 minutos de gravação'),{...pack(49.9,'Até 30 minutos de gravação','Até 5 dias úteis'),name:'Padrão'},{...pack(89.9,'Até 60 minutos + resumo','Até 7 dias úteis',2),name:'Premium'}],faq:[['Gravações com ruído são aceitas?','Avaliamos uma amostra antes de confirmar preço e prazo. Trechos incompreensíveis são marcados como inaudíveis.'],['O resumo está incluído?','O pacote Premium prevê resumo. Nos demais pacotes, resumo e tópicos podem ser orçados separadamente.']]}
+  {
+    "slug": "artes-comerciais",
+    "name": "Artes e kits de divulgação",
+    "short": "Sua próxima promoção merece chamar atenção.",
+    "description": "Envie fotos do seu estabelecimento e sua oferta. Criamos uma campanha profissional para Instagram, Stories e WhatsApp.",
+    "category": "PARA NEGÓCIOS LOCAIS",
+    "kind": "campaign",
+    "image": "campanha-barbearia.jpg",
+    "alt": "Conceito demonstrativo IA Fácil: Artes e kits de divulgação",
+    "uses": [
+      "Artes de ofertas e promoções",
+      "Campanhas para comércios locais",
+      "Adaptações para feed e Stories",
+      "Legenda de apoio",
+      "Pacotes mensais sob orçamento"
+    ],
+    "materials": "Envie 1 ou 2 fotos nítidas do estabelecimento, nome, logotipo se houver, oferta, preço e contato autorizado. Podemos solicitar imagens adicionais.",
+    "note": "O kit adapta uma mesma campanha a diferentes formatos. O exemplo é fictício e não representa trabalho entregue a um cliente.",
+    "packages": [
+      {
+        "name": "Projeto personalizado",
+        "price": 0,
+        "quantity": "1 arte principal + adaptações para feed e Stories",
+        "delivery": "Prazo definido no orçamento",
+        "revisions": 1,
+        "active": true
+      }
+    ],
+    "faq": [
+      [
+        "Como o projeto começa?",
+        "Envie seu material e objetivo pelo Direct. Confirmamos viabilidade, entregas, valor e prazo antes de começar."
+      ],
+      [
+        "O que está incluído?",
+        "1 arte principal + adaptações para feed e Stories. Uma rodada de ajustes dentro do escopo aprovado. O kit adapta uma mesma campanha a diferentes formatos. O exemplo é fictício e não representa trabalho entregue a um cliente."
+      ]
+    ]
+  },
+  {
+    "slug": "fotos-comerciais",
+    "name": "Fotos comerciais de produtos",
+    "short": "Valorize o que você vende.",
+    "description": "Transformamos suas fotos em imagens comerciais com cenários e iluminação para destacar produtos e alimentos.",
+    "category": "PARA NEGÓCIOS LOCAIS",
+    "kind": "product",
+    "image": "pizza-comercial.jpg",
+    "alt": "Conceito demonstrativo IA Fácil: Fotos comerciais de produtos",
+    "uses": [
+      "Produtos e cosméticos",
+      "Alimentos e gastronomia",
+      "Catálogos e lojas virtuais",
+      "Redes sociais",
+      "Composições para anúncios"
+    ],
+    "materials": "Envie fotos nítidas do produto em diferentes ângulos e referências do visual desejado.",
+    "note": "Características essenciais do produto devem ser preservadas. Detalhes e textos são conferidos na aprovação. As imagens do portfólio são conceitos fictícios.",
+    "packages": [
+      {
+        "name": "Projeto personalizado",
+        "price": 0,
+        "quantity": "3 imagens comerciais finalizadas",
+        "delivery": "Prazo definido no orçamento",
+        "revisions": 1,
+        "active": true
+      }
+    ],
+    "faq": [
+      [
+        "Como o projeto começa?",
+        "Envie seu material e objetivo pelo Direct. Confirmamos viabilidade, entregas, valor e prazo antes de começar."
+      ],
+      [
+        "O que está incluído?",
+        "3 imagens comerciais finalizadas. Uma rodada de ajustes dentro do escopo aprovado. Características essenciais do produto devem ser preservadas. Detalhes e textos são conferidos na aprovação. As imagens do portfólio são conceitos fictícios."
+      ]
+    ]
+  },
+  {
+    "slug": "sites-catalogos",
+    "name": "Sites, cardápios e catálogos",
+    "short": "Seu negócio com endereço próprio na internet.",
+    "description": "Reúna serviços, produtos, preços e contato em uma página profissional que funciona no celular e facilita o próximo passo do cliente.",
+    "category": "PARA NEGÓCIOS LOCAIS",
+    "kind": "web",
+    "image": "site-cardapio.svg",
+    "alt": "Conceito demonstrativo IA Fácil: Sites, cardápios e catálogos",
+    "uses": [
+      "Página comercial responsiva",
+      "Cardápio ou catálogo simples",
+      "Botão para contato e pedidos",
+      "Apresentação de serviços",
+      "Atualizações sob orçamento"
+    ],
+    "materials": "Envie nome, identidade visual, fotos autorizadas, itens, preços, horários e contatos que deseja publicar.",
+    "note": "Domínio, hospedagem, quantidade de itens e manutenção são definidos no orçamento. O escopo inicial não inclui checkout, estoque ou pagamentos automáticos.",
+    "packages": [
+      {
+        "name": "Projeto personalizado",
+        "price": 0,
+        "quantity": "1 página comercial com catálogo simples e contato",
+        "delivery": "Prazo definido no orçamento",
+        "revisions": 1,
+        "active": true
+      }
+    ],
+    "faq": [
+      [
+        "Como o projeto começa?",
+        "Envie seu material e objetivo pelo Direct. Confirmamos viabilidade, entregas, valor e prazo antes de começar."
+      ],
+      [
+        "O que está incluído?",
+        "1 página comercial com catálogo simples e contato. Uma rodada de ajustes dentro do escopo aprovado. Domínio, hospedagem, quantidade de itens e manutenção são definidos no orçamento. O escopo inicial não inclui checkout, estoque ou pagamentos automáticos."
+      ]
+    ]
+  },
+  {
+    "slug": "presenca-digital",
+    "name": "Presença digital no Google e nas IAs",
+    "short": "Seu negócio está fácil de encontrar e entender?",
+    "description": "Analisamos as informações públicas da sua empresa, identificamos obstáculos e organizamos um plano de melhorias para Google e buscas com IA.",
+    "category": "PARA NEGÓCIOS LOCAIS",
+    "kind": "search",
+    "image": "presenca-digital.svg",
+    "alt": "Conceito demonstrativo IA Fácil: Presença digital no Google e nas IAs",
+    "uses": [
+      "Diagnóstico com evidências",
+      "Análise de site e perfis públicos",
+      "Coerência de horários e contatos",
+      "Prioridades de melhoria",
+      "Implementação e acompanhamento opcionais"
+    ],
+    "materials": "Envie nome e localização do negócio, site e links dos perfis públicos. Acessos administrativos só serão necessários para correções autorizadas.",
+    "note": "Não garantimos inclusão, posição ou recomendações em respostas de IA. Diagnóstico, implementação e acompanhamento têm escopos separados.",
+    "packages": [
+      {
+        "name": "Projeto personalizado",
+        "price": 0,
+        "quantity": "Diagnóstico + relatório de prioridades",
+        "delivery": "Prazo definido no orçamento",
+        "revisions": 1,
+        "active": true
+      }
+    ],
+    "faq": [
+      [
+        "Como o projeto começa?",
+        "Envie seu material e objetivo pelo Direct. Confirmamos viabilidade, entregas, valor e prazo antes de começar."
+      ],
+      [
+        "O que está incluído?",
+        "Diagnóstico + relatório de prioridades. Uma rodada de ajustes dentro do escopo aprovado. Não garantimos inclusão, posição ou recomendações em respostas de IA. Diagnóstico, implementação e acompanhamento têm escopos separados."
+      ]
+    ]
+  },
+  {
+    "slug": "videos-curtos",
+    "name": "Vídeos curtos comerciais",
+    "short": "Coloque sua promoção em movimento.",
+    "description": "Vídeos verticais para apresentar produtos, serviços e novidades com roteiro, edição e textos que comunicam sua oferta com clareza.",
+    "category": "PARA NEGÓCIOS LOCAIS",
+    "kind": "video",
+    "image": "video-conceito.svg",
+    "alt": "Conceito demonstrativo IA Fácil: Vídeos curtos comerciais",
+    "uses": [
+      "Reels e Stories",
+      "Promoções e lançamentos",
+      "Apresentação de produtos",
+      "Animação de fotos e textos",
+      "Legendas para vídeos curtos"
+    ],
+    "materials": "Envie fotos ou vídeos autorizados, oferta, logotipo e referências. Informe se deseja música ou locução.",
+    "note": "Serviço em preparação: contratação depende de disponibilidade e validação técnica. A imagem é um conceito visual; nenhum vídeo final é apresentado como entrega real.",
+    "packages": [
+      {
+        "name": "Projeto personalizado",
+        "price": 0,
+        "quantity": "Conceito inicial: vídeo vertical de até 15 segundos",
+        "delivery": "Prazo definido no orçamento",
+        "revisions": 1,
+        "active": true
+      }
+    ],
+    "faq": [
+      [
+        "Como o projeto começa?",
+        "Envie seu material e objetivo pelo Direct. Confirmamos viabilidade, entregas, valor e prazo antes de começar."
+      ],
+      [
+        "O que está incluído?",
+        "Conceito inicial: vídeo vertical de até 15 segundos. Uma rodada de ajustes dentro do escopo aprovado. Serviço em preparação: contratação depende de disponibilidade e validação técnica. A imagem é um conceito visual; nenhum vídeo final é apresentado como entrega real."
+      ]
+    ]
+  }
 ];
 export const currency = (value: number) => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(value);
 export const activePackages = (s: Service) => s.packages.filter(p=>p.active);

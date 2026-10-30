@@ -6,6 +6,6 @@ export const store = {
   virtualPersona: true,
   whatsapp: '', // Apenas dígitos: código do país + DDD + número. Nunca coloque credenciais aqui.
   url: '', // URL pública completa, incluindo a pasta do repositório, sem barra final.
-  tagline: 'Sua ideia, em uma nova versão.',
+  tagline: 'Seu negócio merece chamar atenção.',
   provisionalPrices: true,
 };
