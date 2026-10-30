@@ -1,0 +1,13 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { renderToString } from 'react-dom/server';
+import { MemoryRouter } from 'react-router-dom';
+import App from '../src/App';
+import { services, activePackages } from '../src/data/services';
+import { whatsappUrl } from '../src/utils/contact';
+import { metadata } from '../src/utils/metadata';
+test('cinco serviços com slugs únicos e pacotes comercialmente válidos',()=>{assert.equal(services.length,5);assert.equal(new Set(services.map(s=>s.slug)).size,5);for(const s of services){assert.ok(activePackages(s).length);for(const p of activePackages(s)){assert.ok(p.price>0);assert.ok(p.quantity);assert.ok(p.delivery);assert.ok(p.revisions>=0)}}});
+test('WhatsApp desconfigurado não cria links inválidos',()=>{assert.equal(whatsappUrl('Fotos','Básico',''),null);assert.equal(whatsappUrl(undefined,undefined,'123'),null)});
+test('mensagem do WhatsApp mantém serviço e pacote após codificação',()=>{const link=whatsappUrl('Fotos comerciais com IA','Padrão','5511999999999')!;const url=new URL(link);assert.equal(url.hostname,'wa.me');assert.equal(url.pathname,'/5511999999999');assert.match(url.searchParams.get('text')!,/Fotos comerciais com IA, pacote Padrão/)});
+test('todas as páginas renderizam conteúdo e metadados específicos',()=>{for(const s of services){const route=`/servicos/${s.slug}/`;const html=renderToString(<MemoryRouter initialEntries={[route]}><App/></MemoryRouter>);assert.ok(html.includes(s.name));assert.ok(html.includes(s.materials));assert.ok(html.includes('Solicitar pelo WhatsApp'));assert.ok(metadata(route).title.startsWith(s.name));assert.equal(metadata(route).description,s.description)}});
+test('rota desconhecida mostra página 404',()=>{const html=renderToString(<MemoryRouter initialEntries={['/nao-existe/']}><App/></MemoryRouter>);assert.match(html,/Essa página não está aqui/)});

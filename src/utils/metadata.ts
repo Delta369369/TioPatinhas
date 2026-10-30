@@ -1,0 +1,3 @@
+import { services } from '../data/services';
+import { store } from '../config/store';
+export function metadata(path:string){const s=services.find(s=>path.replace(/\/$/,'')===`/servicos/${s.slug}`);const legal:Record<string,string>={'/sobre':'Sobre a loja','/privacidade':'Privacidade','/termos':'Termos de serviço'};return {title:`${s?.name || legal[path.replace(/\/$/,'')] || (path==='/'?'Serviços criativos com IA':'Página não encontrada')} | ${store.name}`,description:s?.description || 'Fotos comerciais e profissionais, vídeos curtos, currículos e transcrições. Conheça os serviços e solicite um orçamento.'};}
