@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, MessageCircle, Sparkles, Menu, X, Check, FileText, Play, AudioLines } from 'lucide-react';
+import { ArrowUpRight, MessageCircle, Sparkles, Menu, X, Check, Play, AudioLines, Instagram } from 'lucide-react';
 import { store } from '../config/store';
 import { whatsappUrl } from '../utils/contact';
 import { currency, fromPrice, type Service } from '../data/services';
 export const asset = (file: string) => `${import.meta.env?.BASE_URL || '/'}assets/${file}`;
-export function Contact({service,packageName,label='Falar no WhatsApp',className='button'}:{service?:string;packageName?:string;label?:string;className?:string}) {
- const [notice,setNotice] = useState(false); const url = whatsappUrl(service,packageName);
- const content = <><MessageCircle size={18}/>{label}</>;
- return <>{url ? <a className={className} href={url} target="_blank" rel="noopener noreferrer">{content}</a> : <button type="button" className={className} onClick={()=>setNotice(true)}>{content}</button>}{notice && <div className="notice" role="status"><strong>Atendimento em configuração</strong><p>O WhatsApp da loja ainda não foi cadastrado. Volte em breve para solicitar seu orçamento.</p><button onClick={()=>setNotice(false)} aria-label="Fechar aviso"><X size={18}/></button></div>}</>;
+export function Contact({service,packageName,label='Pedir orçamento',className='button'}:{service?:string;packageName?:string;label?:string;className?:string}) {
+ const [notice,setNotice] = useState(false);
+ const whatsapp = whatsappUrl(service,packageName);
+ const url = whatsapp || store.instagram;
+ const displayLabel = !whatsapp && store.instagram ? label.replace('WhatsApp','Instagram') : label;
+ const content = <>{whatsapp ? <MessageCircle size={18}/> : <Instagram size={18}/>} {displayLabel}</>;
+ const title = !whatsapp && service ? `Abra o perfil e informe no Direct: ${service}${packageName ? ` — pacote ${packageName}` : ''}.` : undefined;
+ return <>{url ? <a className={className} href={url} title={title} target="_blank" rel="noopener noreferrer">{content}</a> : <button type="button" className={className} onClick={()=>setNotice(true)}>{content}</button>}{notice && <div className="notice" role="status"><strong>Atendimento em configuração</strong><p>O canal de atendimento ainda não foi cadastrado. Volte em breve para solicitar seu orçamento.</p><button onClick={()=>setNotice(false)} aria-label="Fechar aviso"><X size={18}/></button></div>}</>;
 }
 export function Header(){const [open,setOpen]=useState(false);return <header><div className="container nav"><Link to="/" className="brand" aria-label={`${store.name}, início`} onClick={()=>setOpen(false)}><span className="brandmark"><Sparkles size={21}/></span>{store.name}<span className="brand-dot">.</span></Link><button className="menu-toggle" aria-label={open?'Fechar menu':'Abrir menu'} aria-expanded={open} aria-controls="menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button><nav id="menu" className={open?'open':''} aria-label="Principal" onClick={()=>setOpen(false)}><Link to="/">Início</Link><Link to="/#servicos">Serviços</Link><Link to="/#como-funciona">Como funciona</Link><Link to="/#contato">Contato</Link></nav><div className="nav-contact"><Contact className="button small outline" label="Vamos conversar"/></div></div></header>}
 export function Artwork({service,hero=false}:{service:Service;hero?:boolean}) {

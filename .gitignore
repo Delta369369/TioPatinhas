@@ -5,3 +5,7 @@ dist/
 !.env.example
 *.log
 .DS_Store
+# Materiais originais locais; publicar somente assets selecionados e otimizados.
+ISA_GUARDIÃ/
+*.rar
+artifacts/

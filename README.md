@@ -1,10 +1,14 @@
-# TioPatinhas — vitrine de serviços com IA
+# IA Fácil por Isa Guardiã
 
-Primeira versão estática em **pt-BR**, com nome comercial provisório **Lumia Studio**. React, Vite, TypeScript, Tailwind CSS, Lucide e React Router. Não exige backend, APIs pagas, cadastro ou banco de dados.
+![IA Fácil — serviços criativos com IA](public/assets/compartilhamento.png)
+
+[Instagram](https://www.instagram.com/isabela_guardian/) · [Identidade e operação](docs/MARCA.md) · [Assets](docs/ASSETS.md)
+
+Vitrine estática em **pt-BR** da **IA Fácil**, apresentada por **Isa Guardiã**, personagem virtual criada com IA. React, Vite, TypeScript, Tailwind CSS, Lucide e React Router. Não exige backend, APIs pagas, cadastro ou banco de dados.
 
 ## Visualizar e executar
 
-Na pasta `C:\Users\Victor_Delta\Downloads\CODEX\TioPatinhas`, abra um terminal. Requer Node.js 24 e pnpm 11 (se necessário, instale com `npm install -g pnpm@11.25.0`).
+Na pasta local do projeto `TioPatinhas`, abra um terminal. Requer Node.js 24 e pnpm 11 (se necessário, instale com `npm install -g pnpm@11.25.0`).
 
 1. Execute `pnpm install --frozen-lockfile` e depois `pnpm dev`.
 2. Abra o endereço local exibido no terminal, normalmente `http://127.0.0.1:5173/`.
@@ -16,14 +20,14 @@ Para validar a produção: `pnpm test`, `pnpm build`, `pnpm test:output` e `pnpm
 - Página inicial com cinco cards compactos, seção de processo, benefícios e perguntas frequentes.
 - Cinco páginas de serviços com demonstrações, materiais necessários, pacotes, prazos, revisões, perguntas frequentes e serviços relacionados.
 - Menu móvel, links de navegação, comparador acessível por teclado, preferência por movimento reduzido e página 404.
-- Atendimento pelo WhatsApp com mensagem específica para serviço e pacote. Número vazio exibe aviso de configuração, sem abrir telefone inventado.
+- Atendimento pelo Instagram @isabela_guardian. Ao configurar um WhatsApp válido, o canal passa a usar mensagens específicas para serviço e pacote. Nenhum telefone é inventado.
 - Páginas Sobre, Privacidade e Termos com informação transparente sobre a operação ainda em preparação.
 - HTML gerado por rota com conteúdo e metadados individuais, Open Graph, JSON-LD WebSite, robots.txt e sitemap (URLs públicas exigem SITE_URL).
 - Testes de regras comerciais, WhatsApp, renderização das rotas e verificação de links e assets do build.
 
 ## Alterar nome, contato e informações comerciais
 
-Em **`src/config/store.ts`**, altere `name`, `tagline`, `whatsapp` e, opcionalmente, `url`. O nome alimenta a navegação, rodapé e metadados. WhatsApp deve conter somente dígitos no formato `55` + DDD + número, por exemplo um valor seu com 12 ou 13 dígitos. Nenhum número de exemplo é usado como canal ativo. Não inclua tokens ou segredos nesses arquivos públicos.
+Em **`src/config/store.ts`**, altere `name`, `tagline`, `instagram`, `instagramHandle`, `whatsapp` e, opcionalmente, `url`. O nome alimenta a navegação, rodapé e metadados. WhatsApp deve conter somente dígitos no formato `55` + DDD + número, por exemplo um valor seu com 12 ou 13 dígitos. Nenhum número de exemplo é usado como canal ativo. Não inclua tokens ou segredos nesses arquivos públicos.
 
 Em **`src/data/services.ts`**, cada serviço concentra descrição, aplicações, materiais, observações, perguntas e `packages`. Cada pacote possui `name`, `price` (número, em reais), `quantity`, `delivery`, `revisions` e `active`. Use `active: false` para desativá-lo; mantenha ao menos um pacote ativo por serviço. O preço inicial é o menor valor entre os pacotes ativos.
 
@@ -31,7 +35,7 @@ Os preços e prazos são provisórios. Confirme os valores, condições, identid
 
 ## Imagens, vídeos e exemplos
 
-Os arquivos ficam em **`public/assets/`**, servidos localmente sem dependência de bancos de imagens externos. `produto.webp` e `retrato.webp` foram gerados com a ferramenta integrada Imagegen e retratam produto e pessoa fictícios. Os prompts estão em `docs/ASSETS.md`. `produto-base.svg` é uma ilustração feita em código; seu comparador é uma simulação, não uma evidência de edição real. Os modelos de currículo e transcrição têm dados fictícios. O vídeo é um storyboard: nenhum player vazio ou vídeo de terceiros é apresentado como trabalho realizado.
+Os arquivos ficam em **`public/assets/`**, servidos localmente sem dependência de bancos de imagens externos. `produto.webp` é uma imagem de produto fictício gerada por IA. `isa-perfil.webp`, `isa-lifestyle.webp` e `isa-avatar.png` são versões otimizadas das imagens da personagem fornecidas pelo proprietário. A imagem genérica antiga foi substituída. Os prompts estão em `docs/ASSETS.md`. `produto-base.svg` é uma ilustração feita em código; seu comparador é uma simulação, não uma evidência de edição real. Os modelos de currículo e transcrição têm dados fictícios. O vídeo é um storyboard: nenhum player vazio ou vídeo de terceiros é apresentado como trabalho realizado.
 
 Para trocar uma imagem, coloque o arquivo autorizado em `public/assets/` e ajuste `image` e `alt` em `src/data/services.ts`. Para substituir o par do comparador, edite as fontes em `Compare`, em `src/pages/ServicePage.tsx`, usando fotos do mesmo produto e atualizando a identificação da demonstração. Prefira WebP otimizado. Mantenha crédito e licença quando aplicáveis. A imagem de compartilhamento é `compartilhamento.png` (1200 × 630).
 
@@ -72,7 +76,7 @@ Para outra hospedagem estática compatível, use comando de build `pnpm build`, 
 
 ## Validação e limites
 
-Os testes verificam dados, WhatsApp e renderização React. Após build, `pnpm test:output` verifica destinos de links locais e recursos, páginas exclusivas e metadados. A matriz deve ser executada com base `/` e `/TioPatinhas/`. A inspeção visual e os testes interativos no navegador ainda devem ser concluídos: a automação de navegador desta sessão foi bloqueada pela política de URLs do Firefox. Não foram feitos testes reais de pagamento ou envio de WhatsApp, pois não há checkout nem número configurado.
+Os testes verificam dados, WhatsApp e renderização React. Após build, `pnpm test:output` verifica destinos de links locais e recursos, páginas exclusivas e metadados. A matriz deve ser executada com base `/` e `/TioPatinhas/`. A revisão desta versão usa o Chrome conectado, com verificação visual, navegação, galeria e botões de atendimento. O menu e o catálogo também são testados num frame real de 390 × 844 px, sem depender da emulação de viewport da extensão. Não foram feitos testes reais de pagamento ou envio de WhatsApp, pois não há checkout nem número configurado.
 
 ## Antes de abrir para clientes
 

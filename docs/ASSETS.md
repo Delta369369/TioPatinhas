@@ -1,5 +1,11 @@
 # Assets desta versão
 
+## Identidade Isa Guardiã — revisão 1.1
+
+O proprietário forneceu as imagens em `ISA_GUARDIÃ/` e confirmou que Isa é uma personagem virtual criada com IA. `Perfil_01.png` origina `public/assets/isa-perfil.webp` (1000 px) e `isa-avatar.png` (400 px). A imagem `2026, 03_19_06_no Bar com amigas.png` origina `isa-lifestyle.webp` (900 px). São otimizações de formato e tamanho, sem edição generativa da personagem. `compartilhamento.png` é uma composição de 1200 × 630 com a nova identidade.
+
+Os originais e o arquivo de identidade ficam fora do versionamento. As peças sobre segurança digital não foram usadas como alegações de serviços prestados pela loja. O retrato genérico anterior foi substituído pelo da Isa. Os prompts abaixo registram a origem histórica das imagens da versão 1.0.
+
 Gerados pela ferramenta **Imagegen integrada**, sem API de geração no site. Saídas finais otimizadas em `public/assets/produto.webp` e `public/assets/retrato.webp`. Ambos são exemplos fictícios, sem alegação de cliente real.
 
 ## Prompt — produto
