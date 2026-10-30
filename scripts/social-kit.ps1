@@ -8,6 +8,7 @@ function Text($g,$text,$size,$x,$y,$width,$height,$color='#FFFFFF',$bold=$true){
  $brush=Brush $color
  $g.DrawString($text,$font,$brush,[Drawing.RectangleF]::new($x,$y,$width,$height));$font.Dispose();$brush.Dispose()
 }
+function Center($g,$text,$size,$y,$height,$color='#FFFFFF'){$font=[Drawing.Font]::new('Arial',$size,[Drawing.FontStyle]::Bold,[Drawing.GraphicsUnit]::Pixel);$brush=Brush $color;$fmt=[Drawing.StringFormat]::new();$fmt.Alignment=[Drawing.StringAlignment]::Center;$g.DrawString($text,$font,$brush,[Drawing.RectangleF]::new(0,$y,1080,$height),$fmt);$fmt.Dispose();$brush.Dispose();$font.Dispose()}
 function Canvas($height){$b=[Drawing.Bitmap]::new(1080,$height);$g=[Drawing.Graphics]::FromImage($b);$g.SmoothingMode='AntiAlias';$g.TextRenderingHint='AntiAliasGridFit';$g.Clear([Drawing.ColorTranslator]::FromHtml('#0D0D18'));return @($b,$g)}
 function Finish($b,$g,$name){$b.Save((Join-Path $out $name),[Drawing.Imaging.ImageFormat]::Png);$g.Dispose();$b.Dispose()}
 $posts=@(
@@ -33,6 +34,6 @@ foreach($p in $posts){
  Finish $b $g ($p[0]+'.png')
 }
 $highlights=@(@('servicos','SERVIÇOS','✦'),@('portfolio','PORTFÓLIO','01'),@('como-pedir','COMO PEDIR','02'),@('duvidas','DÚVIDAS','?'),@('sobre-a-isa','SOBRE A ISA','IA'))
-foreach($h in $highlights){$c=Canvas 1080;$b=$c[0];$g=$c[1];$pen=[Drawing.Pen]::new([Drawing.ColorTranslator]::FromHtml('#A78BFA'),8);$g.DrawEllipse($pen,210,210,660,660);$pen.Dispose();Text $g $h[2] 190 395 325 500 260 '#B9A4ED';Text $g $h[1] 40 305 625 650 80;Text $g 'IA FÁCIL' 27 440 748 400 50 '#9390A6';Finish $b $g ('destaque-'+$h[0]+'.png')}
+foreach($h in $highlights){$c=Canvas 1080;$b=$c[0];$g=$c[1];$pen=[Drawing.Pen]::new([Drawing.ColorTranslator]::FromHtml('#A78BFA'),8);$g.DrawEllipse($pen,210,210,660,660);$pen.Dispose();Center $g $h[2] 190 325 260 '#B9A4ED';Center $g $h[1] 40 625 80;Center $g 'IA FÁCIL' 27 748 50 '#9390A6';Finish $b $g ('destaque-'+$h[0]+'.png')}
 $stories=@(@('servicos','CINCO FORMAS DE VALORIZAR SEU NEGÓCIO.','Artes e kits de divulgação`nFotos comerciais`nSites e cardápios`nPresença digital`nVídeos em preparação'),@('portfolio','IMAGINE SUA MARCA AQUI.','Explore nossos conceitos de barbearia e gastronomia. Exemplos fictícios, criados com IA.'),@('como-pedir','DO PRIMEIRO OI À SUA CAMPANHA.','Envie fotos e objetivo.`nAlinhamos escopo, valor e prazo.`nVocê confere e solicita os ajustes previstos.'),@('duvidas','O QUE VOCÊ PRECISA SABER.','Projetos sob orçamento.`nPrazo combinado antes de começar.`nMateriais com autorização de uso.`nUma rodada de ajustes no escopo inicial.'),@('sobre-a-isa','PRAZER, ISA GUARDIÃ.','Sou a personagem virtual da IA Fácil, criada com inteligência artificial. O atendimento e a execução são feitos pela equipe responsável.'))
 foreach($p in $stories){$c=Canvas 1920;$b=$c[0];$g=$c[1];Text $g ('IA FÁCIL / '+$p[0].ToUpper()) 27 85 200 920 80 '#B9A4ED';Text $g $p[1] 86 80 390 920 490;Text $g ($p[2].Replace('`n',"`n")) 39 85 985 910 520 '#D5D2E2' $false;Text $g 'FALE COM A GENTE NO DIRECT' 31 85 1600 920 70 '#B9A4ED';Text $g '@isabela_guardian' 34 85 1690 920 70;Finish $b $g ('story-'+$p[0]+'.png')}
