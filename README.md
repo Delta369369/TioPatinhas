@@ -1,5 +1,7 @@
 # IA Fácil por Isa Guardiã
 
+[Visitar o site público](https://ia-facil-studio-delta369.nuttystone14.chatgpt.site)
+
 ![IA Fácil — serviços criativos com IA](public/assets/compartilhamento.png)
 
 [Instagram](https://www.instagram.com/isabela_guardian/) · [Identidade e operação](docs/MARCA.md) · [Assets](docs/ASSETS.md)
